@@ -12,12 +12,21 @@
 
 <body>
     <div class="sidebar">
-        <h4 class="text-center text-white">Dashboard</h4>
-        <a href="#">Home</a>
-        <a href="#">Profile</a>
-        <a href="#">Settings</a>
-        <a href="#">Messages</a>
-        <a href="#">Logout</a>
+        <h4 class="text-center">Dashboard</h4>
+        <a href="#">Dashboard</a>
+        <a href="#">Siswa</a>
+        
+        <div class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle w-100 text-start" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                Indikator
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" href="#">Kategori Indikator</a></li>
+                <li><a class="dropdown-item" href="#">Indikator</a></li>
+            </ul>
+        </div>
+
+        <a href="#">Prestasi</a>
     </div>
 
     <div class="content">
