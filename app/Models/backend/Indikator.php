@@ -17,7 +17,7 @@ class Indikator extends Model
 
     public $timestamps = false;
 
-    public function kategori_indikator()
+    public function kategoriIndikator()
     {
         return $this->belongsTo(KategoriIndikator::class);
     }   

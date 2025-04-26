@@ -17,11 +17,12 @@ class Prestasi extends Model
 
    public function siswa()
    {
-       return $this->belongsTo(Siswa::class);
+       return $this->belongsTo(Siswa::class, 'id_siswa');
    }
 
-   public function kategori_indikator()
+
+   public function kategoriIndikator()
    {
-       return $this->belongsTo(KategoriIndikator::class);
+       return $this->belongsTo(KategoriIndikator::class, 'id_kategori_indikator');
    }
 }

@@ -66,7 +66,7 @@
             <div class="sidebar-wrapper scrollbar scrollbar-inner">
                 <div class="sidebar-content">
                     <ul class="nav nav-secondary">
-                        <li class="nav-item active">
+                        <li class="nav-item {{ request()->routeIs('dashboard.admin') ? 'active' : '' }}">
                             <a data-bs-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
                                 <i class="fas fa-home"></i>
                                 <p>Dashboard</p>
@@ -75,27 +75,27 @@
                             <div class="collapse" id="dashboard">
                                 <ul class="nav nav-collapse">
                                     <li>
-                                        <a href="../demo1/index.html">
+                                        <a href="{{ route('dashboard.admin') }}">
                                             <span class="sub-item">Dashboard 1</span>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li>                        
                         <li class="nav-section">
                             <span class="sidebar-mini-icon">
                                 <i class="fa fa-ellipsis-h"></i>
                             </span>
                             <h4 class="text-section">Components</h4>
                         </li>
-                        <li class="nav-item">
-                            <a href="widgets.html">
+                        <li class="nav-item {{ request()->routeIs('siswa.index', 'siswa.create', 'siswa.edit') ? 'active' : '' }}">
+                            <a href="{{ route('siswa.index') }}">
                                 <i class="fas fa-laptop"></i>
                                 <p>Siswa</p>
                                 <span class="badge badge-success">{{ $SiswaTotal }}</span>
                             </a>
-                        </li>
-                        <li class="nav-item">
+                        </li>                        
+                        <li class="nav-item {{ request()->routeIs('indikator.index', 'indikator.create', 'indikator.edit', 'kategori.index', 'kategori.create', 'kategori.edit') ? 'active' : '' }}">
                             <a data-bs-toggle="collapse" href="#charts">
                                 <i class="fas fa-chart-bar"></i>
                                 <p>Indikator</p>
@@ -104,20 +104,20 @@
                             <div class="collapse" id="charts">
                                 <ul class="nav nav-collapse">
                                     <li>
-                                        <a href="charts/charts.html">
+                                        <a href="{{ route('kategori.index') }}">
                                             <span class="sub-item">Kategori</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="charts/sparkline.html">
+                                        <a href="{{ route('indikator.index') }}">
                                             <span class="sub-item">Indikator</span>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item">
-                            <a href="widgets.html">
+                        <li class="nav-item {{ request()->routeIs('prestasi.index', 'prestasi.create', 'prestasi.edit') ? 'active' : '' }}">
+                            <a href="{{ route('prestasi.index') }}">
                                 <i class="fas fa-medal"></i>
                                 <p>Prestasi</p>
                                 <span class="badge badge-primary">{{ $PrestasiTotal }}</span>
@@ -435,6 +435,8 @@
             <div class="container">
                @yield('content')
             </div>
+
+            @include('backend.layouts.sweetalert')
 
             <footer class="footer">
                 <div class="container-fluid d-flex justify-content-between">

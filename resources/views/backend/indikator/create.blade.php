@@ -1,10 +1,10 @@
-@extends('backend.layouts.layouts')
-
+@extends('backend.layouts.app')
+@section('title', 'Tambah Indikator Baru')
 @section('content')
     <div class="container">
         <div class="page-inner">
             <div class="page-header">
-                <h3 class="fw-bold mb-3">Create New Blog</h3>
+                <h3 class="fw-bold mb-3">Tambah Indikator Baru</h3>
                 <ul class="breadcrumbs mb-3">
                     <li class="nav-home">
                         <a href="{{ route('dashboard.admin') }}">
@@ -12,95 +12,82 @@
                         </a>
                     </li>
                     <li class="separator"><i class="icon-arrow-right"></i></li>
-                    <li class="nav-item"><a href="{{ route('blog.index') }}">Blog</a></li>
+                    <li class="nav-item"><a href="{{ route('indikator.index') }}">Indikator</a></li>
                     <li class="separator"><i class="icon-arrow-right"></i></li>
-                    <li class="nav-item"><a href="#">Create</a></li>
+                    <li class="nav-item"><a href="#">Tambah Indikator</a></li>
                 </ul>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Create New Blog</h4>
+                            <h4 class="card-title">Tambah Indikator Baru</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('blog.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('indikator.store') }}" method="POST">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col">
                                         <div class="form-group form-group-default">
-                                            <label for="category_id">Category</label>
-                                            <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror" required>
-                                                <option value="">-- Select Category --</option>
-                                                @foreach ($category_blog as $category)
-                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            <label for="poin">Poin</label>
+                                            <input type="text" name="poin" id="poin"
+                                                class="form-control @error('poin') is-invalid @enderror"
+                                                placeholder="Masukkan poin indikator" required>
+                                            @error('poin')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="form-group form-group-default">
+                                            <label for="jam">Jam</label>
+                                            <input type="text" name="jam" id="jam"
+                                                class="form-control @error('jam') is-invalid @enderror"
+                                                placeholder="Masukkan jam indikator" required>
+                                            @error('jam')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-3">
+                                    <div class="col">
+                                        <div class="form-group form-group-default">
+                                            <label for="grade">Grade</label>
+                                            <select name="grade" id="grade" class="form-control @error('grade') is-invalid @enderror" required>
+                                                <option value="">Pilih Grade</option>
+                                                @foreach (['A', 'B', 'C', 'D', 'E'] as $option)
+                                                    <option value="{{ $option }}" {{ old('grade', $indikator->grade ?? '') == $option ? 'selected' : '' }}>{{ $option }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('category_id')
+                                            @error('grade')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
+                                    </div>                                    
+
+                                    <div class="col">
                                         <div class="form-group form-group-default">
-                                            <label for="title">Title</label>
-                                            <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" placeholder="Enter blog title" required>
-                                            @error('title')
+                                            <label for="kategori_indikator_id">Kategori Indikator</label>
+                                            <select name="kategori_indikator_id" id="kategori_indikator_id"
+                                                class="form-control @error('kategori_indikator_id') is-invalid @enderror" required>
+                                                <option value="">Pilih Kategori Indikator</option>
+                                                @foreach($kategori_indikators as $kategori)
+                                                    <option value="{{ $kategori->id }}">{{ $kategori->nama }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('kategori_indikator_id')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group form-group-default">
-                                            <label for="overview">Overview</label>
-                                            <textarea name="overview" id="overview" class="form-control @error('overview') is-invalid @enderror" rows="2" placeholder="Short summary of the blog"></textarea>
-                                            @error('overview')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group form-group-default">
-                                            <label for="description">Description</label>
-                                            <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" rows="5" placeholder="Full blog content"></textarea>
-                                            @error('description')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group form-group-default">
-                                            <label for="meta_keywords">Meta Keywords</label>
-                                            <input type="text" name="meta_keywords" id="meta_keywords" class="form-control @error('meta_keywords') is-invalid @enderror" placeholder="SEO keywords (comma-separated)">
-                                            @error('meta_keywords')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group form-group-default">
-                                            <label for="meta_descriptions">Meta Descriptions</label>
-                                            <input type="text" name="meta_descriptions" id="meta_descriptions" class="form-control @error('meta_descriptions') is-invalid @enderror" placeholder="SEO description">
-                                            @error('meta_descriptions')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group form-group-default">
-                                            <label for="image">Upload Image</label>
-                                            <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror" onchange="previewImage('image', 'imagePreview')" required>
-                                            @error('image')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                        <img id="imagePreview" src="#" alt="Image Preview" class="img-thumbnail mt-2" style="display: none; width: 200px;">
                                     </div>
                                 </div>
 
                                 <div class="d-flex justify-content-end mt-4">
-                                    <button type="submit" class="btn btn-primary">Save</button>
-                                    <a href="{{ route('blog.index') }}" class="btn btn-secondary ms-2">Cancel</a>
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                    <a href="{{ route('indikator.index') }}" class="btn btn-secondary ms-2">Batal</a>
                                 </div>
 
                             </form>
@@ -110,5 +97,4 @@
             </div>
         </div>
     </div>
-    @include('backend.ckeditor')
 @endsection
