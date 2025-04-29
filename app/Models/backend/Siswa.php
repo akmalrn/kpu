@@ -10,9 +10,10 @@ class Siswa extends Model
 
     protected $fillable = [
         'id',
-        'nama', 
-        'kelas', 
+        'nama',
+        'kelas',
         'tipe',
+        'password',
     ];
 
     public function prestasi()

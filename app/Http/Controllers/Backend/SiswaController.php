@@ -8,6 +8,7 @@ use App\Models\Backend\KategoriIndikator;
 use App\Models\Backend\Prestasi;
 use App\Models\Backend\Siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class SiswaController extends Controller
 {
@@ -33,13 +34,20 @@ class SiswaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id' => 'required|integer|unique:siswa,id', 
+            'id' => 'required|integer|unique:siswa,id',
             'nama' => 'required|string|max:255',
             'kelas' => 'required|string|max:255',
             'tipe' => 'required|in:reguler,unggulan',
+            'password' => 'required|string|min:6',
         ]);
 
-        Siswa::create($request->all());
+        Siswa::create([
+            'id' => $request->id,
+            'nama' => $request->nama,
+            'kelas' => $request->kelas,
+            'tipe' => $request->tipe,
+            'password' => Hash::make($request->password),
+        ]);
 
         return redirect()->route('siswa.index')->with('success', 'Siswa berhasil ditambahkan.');
     }
@@ -57,17 +65,26 @@ class SiswaController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'id' => 'required|integer|unique:siswa,id', 
+            'id' => 'required|integer|unique:siswa,id,' . $id,
             'nama' => 'required|string|max:255',
             'kelas' => 'required|string|max:255',
             'tipe' => 'required|in:reguler,unggulan',
+            'password' => 'nullable|string|min:6',
         ]);
 
         $siswa = Siswa::findOrFail($id);
-        $siswa->update($request->all());
+
+        $data = $request->only(['id', 'nama', 'kelas', 'tipe']);
+
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($request->password);
+        }
+
+        $siswa->update($data);
 
         return redirect()->route('siswa.index')->with('success', 'Siswa berhasil diperbarui.');
     }
+
 
     public function destroy($id)
     {

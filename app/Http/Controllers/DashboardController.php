@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Backend\Indikator;
-use App\Models\Backend\KategoriIndikator;
-use App\Models\Backend\Prestasi;
 use App\Models\Backend\Siswa;
-use Illuminate\Http\Request;
+use App\Models\Backend\KategoriIndikator;
+use App\Models\Backend\Indikator;
+use App\Models\Backend\Prestasi;
 
-class AdminController extends Controller
+class DashboardController extends Controller
 {
     public function index()
     {
@@ -20,11 +19,8 @@ class AdminController extends Controller
         $PrestasiTotal = Prestasi::count();
 
         return view('backend.index', compact(
-            'siswa',
-            'SiswaTotal',
-            'KategoriTotal',
-            'IndikatorTotal',
-            'PrestasiTotal'
+            'siswa', 'SiswaTotal', 'KategoriTotal', 'IndikatorTotal', 'PrestasiTotal'
         ));
     }
 }
+

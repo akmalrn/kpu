@@ -7,161 +7,78 @@
             <h3 class="fw-bold mb-3">Dashboard</h3>
             <h6 class="op-7 mb-2">Admin KPU</h6>
         </div>
-        <div class="ms-md-auto py-2 py-md-0">
-            <a href="#" class="btn btn-label-info btn-round me-2">Manage</a>
-            <a href="#" class="btn btn-primary btn-round">Add Customer</a>
-        </div>
     </div>
+
     <div class="row">
+        @php
+            $stat = [
+                ['icon' => 'fas fa-users', 'color' => 'primary', 'label' => 'Siswa', 'value' => $SiswaTotal],
+                ['icon' => 'fas fa-check-square', 'color' => 'info', 'label' => 'Kategori', 'value' => $KategoriTotal],
+                ['icon' => 'fas fa-chart-bar', 'color' => 'success', 'label' => 'Indikator', 'value' => $IndikatorTotal],
+                ['icon' => 'fas fa-medal', 'color' => 'secondary', 'label' => 'Prestasi', 'value' => $PrestasiTotal],
+            ];
+        @endphp
+        @foreach ($stat as $s)
         <div class="col-sm-6 col-md-3">
             <div class="card card-stats card-round">
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-icon">
-                            <div class="icon-big text-center icon-primary bubble-shadow-small">
-                                <i class="fas fa-users"></i>
+                            <div class="icon-big text-center text-{{ $s['color'] }} bubble-shadow-small">
+                                <i class="{{ $s['icon'] }}"></i>
                             </div>
                         </div>
                         <div class="col col-stats ms-3 ms-sm-0">
                             <div class="numbers">
-                                <p class="card-category">Siswa</p>
-                                <h4 class="card-title">{{ $SiswaTotal }}</h4>
+                                <p class="card-category">{{ $s['label'] }}</p>
+                                <h4 class="card-title">{{ $s['value'] }}</h4>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="card card-stats card-round">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-icon">
-                            <div class="icon-big text-center icon-info bubble-shadow-small">
-                                <i class="fas fa-check-square"></i>
-                            </div>
-                        </div>
-                        <div class="col col-stats ms-3 ms-sm-0">
-                            <div class="numbers">
-                                <p class="card-category">Kategori</p>
-                                <h4 class="card-title">{{ $KategoriTotal }}</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="card card-stats card-round">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-icon">
-                            <div class="icon-big text-center icon-success bubble-shadow-small">
-                                <i class="fas fa-chart-bar"></i>
-                            </div>
-                        </div>
-                        <div class="col col-stats ms-3 ms-sm-0">
-                            <div class="numbers">
-                                <p class="card-category">Indikator</p>
-                                <h4 class="card-title">{{ $IndikatorTotal }}</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="card card-stats card-round">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-icon">
-                            <div class="icon-big text-center icon-secondary bubble-shadow-small">
-                                <i class="fas fa-medal"></i>
-                            </div>
-                        </div>
-                        <div class="col col-stats ms-3 ms-sm-0">
-                            <div class="numbers">
-                                <p class="card-category">Prestasi</p>
-                                <h4 class="card-title">{{ $PrestasiTotal }}</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
-    <div class="row">
-        <div class="col-md-8">
+
+    <!-- Tabel Daftar Siswa -->
+    <div class="row mt-4">
+        <div class="col-md-12">
             <div class="card card-round">
                 <div class="card-header">
-                    <div class="card-head-row">
-                        <div class="card-title">User Statistics</div>
-                        <div class="card-tools">
-                            <a href="#" class="btn btn-label-success btn-round btn-sm me-2">
-                                <span class="btn-label">
-                                    <i class="fa fa-pencil"></i>
-                                </span>
-                                Export
-                            </a>
-                            <a href="#" class="btn btn-label-info btn-round btn-sm">
-                                <span class="btn-label">
-                                    <i class="fa fa-print"></i>
-                                </span>
-                                Print
-                            </a>
-                        </div>
-                    </div>
+                    <h4 class="card-title">Daftar Siswa</h4>
                 </div>
                 <div class="card-body">
-                    <div class="chart-container" style="min-height: 375px">
-                        <canvas id="statisticsChart"></canvas>
-                    </div>
-                    <div id="myChartLegend"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card card-primary card-round">
-                <div class="card-header">
-                    <div class="card-head-row">
-                        <div class="card-title">Daily Sales</div>
-                        <div class="card-tools">
-                            <div class="dropdown">
-                                <button class="btn btn-sm btn-label-light dropdown-toggle"
-                                    type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                    Export
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </div>
+                    @if($siswa->count() > 0)
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Nama</th>
+                                        <th>NIS</th>
+                                        <th>Kelas</th>
+                                        <th>Tipe</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($siswa as $s)
+                                        <tr>
+                                            <td>{{ $s->nama ?? '-' }}</td>
+                                            <td>{{ $s->id ?? '-' }}</td>
+                                            <td>{{ $s->kelas ?? '-' }}</td>
+                                            <td>{{ $s->tipe ?? '-'}}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
-                    </div>
-                    <div class="card-category">March 25 - April 02</div>
-                </div>
-                <div class="card-body pb-0">
-                    <div class="mb-4 mt-2">
-                        <h1>$4,578.58</h1>
-                    </div>
-                    <div class="pull-in">
-                        <canvas id="dailySalesChart"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="card card-round">
-                <div class="card-body pb-0">
-                    <div class="h1 fw-bold float-end text-primary">+5%</div>
-                    <h2 class="mb-2">17</h2>
-                    <p class="text-muted">Users online</p>
-                    <div class="pull-in sparkline-fix">
-                        <div id="lineChart"></div>
-                    </div>
+                    @else
+                        <p class="text-muted">Belum ada data siswa.</p>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
+    

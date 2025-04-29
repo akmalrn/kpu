@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\AuthController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -8,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/gateAdmin', [App\Http\Controllers\Backend\AuthController::class, 'halamanLogin'])->name('halamanLoginAdmin');
 Route::post('/gateAdmin', [App\Http\Controllers\Backend\AuthController::class, 'login'])->name('loginAdmin');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboardAdmin', [App\Http\Controllers\Backend\AdminController::class, 'index'])->name('dashboard.admin');

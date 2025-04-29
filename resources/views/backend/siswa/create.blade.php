@@ -29,10 +29,10 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group form-group-default">
-                                            <label for="id">Id</label>
+                                            <label for="id">NIS</label>
                                             <input type="text" name="id" id="id"
                                                 class="form-control @error('id') is-invalid @enderror"
-                                                placeholder="Masukkan id siswa" required>
+                                                placeholder="Masukkan NIS Siswa" required>
                                             @error('id')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -89,12 +89,24 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    <div class="col">
+                                        <div class="form-group form-group-default">
+                                            <label for="password">Password</label>
+                                            <input type="password" name="password" id="password"
+                                                class="form-control @error('password') is-invalid @enderror"
+                                                placeholder="Masukkan password siswa" required>
+                                            @error('password')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <div class="d-flex justify-content-end mt-4">
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
-                                    <a href="{{ route('siswa.index') }}" class="btn btn-secondary ms-2">Batal</a>
-                                </div>
+                        </div>
+                        <div class="row">
+                            <div class="d-flex justify-content-end mt-4">
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                <a href="{{ route('siswa.index') }}" class="btn btn-secondary ms-2">Batal</a>
+                            </div>
 
                             </form>
                         </div>

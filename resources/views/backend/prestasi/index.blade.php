@@ -50,16 +50,6 @@
                                             <th style="width: 10%">Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Nama Siswa</th>
-                                            <th>Kategori Indikator</th>
-                                            <th>Tanggal</th>
-                                            <th>Periode</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
                                         @foreach ($prestasis as $prestasi)
                                             <tr>

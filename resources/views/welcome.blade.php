@@ -13,6 +13,25 @@
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="card p-4 shadow-lg" style="max-width: 400px; width: 100%;">
             <h3 class="text-center mb-4">Login</h3>
+
+            <!-- ALERT ERROR MULAI -->
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <!-- ALERT ERROR SELESAI -->
+
             <form action="{{ route('loginAdmin') }}" method="POST">
                 @csrf
                 <div class="mb-3">
@@ -31,7 +50,7 @@
             </form>
         </div>
     </div>
-    <script src="{{ asset('bootstrap.bunddle.min.js') }}"></script>
+    <script src="{{ asset('bootstrap.bundle.min.js') }}"></script> <!-- typo: bunddle -> bundle -->
 </body>
 
 </html>
