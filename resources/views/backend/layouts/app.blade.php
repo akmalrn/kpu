@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>KPU | @yield('title')</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
-    <link rel="icon" href="{{ asset('backend/img/kaiadmin/favicon.ico') }}" type="image/x-icon" />
+    <link rel="icon" href="{{ asset('assets/images/wikrama.png') }}" type="image/x-icon" />
 
     <!-- Fonts and icons -->
     <script src="{{ asset('backend/js/plugin/webfont/webfont.min.js') }}"></script>
@@ -47,7 +47,8 @@
                 <div class="logo-header" data-background-color="dark">
                     <a href="index.html" class="logo">
                         <img src="{{ asset('assets/images/wikrama.png') }}" alt="navbar brand" class="navbar-brand"
-                            height="20" />
+                            height="40" /> 
+                            <p class="p-3 fs-5 mt-3 text-white">Wikrama 1 Garut</p>
                     </a>
                     <div class="nav-toggle">
                         <button class="btn btn-toggle toggle-sidebar">
