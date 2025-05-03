@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>KPU | @yield('title')</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
-    <link rel="icon" href="{{ asset('backend/img/kaiadmin/favicon.ico') }}" type="image/x-icon" />
+    <link rel="icon" href="{{ asset('backend/img/ /favicon.ico') }}" type="image/x-icon" />
 
     <!-- Fonts and icons -->
     <script src="{{ asset('backend/js/plugin/webfont/webfont.min.js') }}"></script>
@@ -242,7 +242,7 @@
                                             });
                                         });
                                     </script>
-    
+
 
                                 </ul>
                             </li>
@@ -260,35 +260,18 @@
             @include('backend.layouts.sweetalert')
 
             <footer class="footer">
-                <div class="container-fluid d-flex justify-content-between">
-                    <nav class="pull-left">
-                        <ul class="nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="http://www.themekita.com">
-                                    ThemeKita
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"> Help </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"> Licenses </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div class="copyright">
-                        2024, made with <i class="fa fa-heart heart text-danger"></i> by
-                        <a href="http://www.themekita.com">ThemeKita</a>
-                    </div>
-                    <div>
-                        Distributed by
-                        <a target="_blank" href="https://themewagon.com/">ThemeWagon</a>.
+                <div class="text-center my-2 my-sm-0">
+                    <div class="copyright text-center text-sm-left">
+                        &copy;
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script>
+                        <a href="" target="_blank">KPU</a>
+                        <span class="d-none d-sm-inline"> - All rights reserved</span>
                     </div>
                 </div>
             </footer>
         </div>
-
-        <!-- Custom template | don't include it in your project! -->
         <div class="custom-template">
             <div class="title">Settings</div>
             <div class="custom-content">
