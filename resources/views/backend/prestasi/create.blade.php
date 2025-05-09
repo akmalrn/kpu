@@ -56,8 +56,34 @@
                                         @error('id_kategori_indikator')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
-                                    </div>                                   
+                                    </div>
                                 </div>
+<!-- Jam -->
+<div class="col">
+    <label for="jam">Jam</label>
+    <select name="jam" id="jam" class="form-control @error('jam') is-invalid @enderror" required>
+        <option value="">Pilih Jam</option>
+        @foreach ($indikator as $indikatorItem)
+            <option value="{{ $indikatorItem->jam }}" data-poin="{{ $indikatorItem->poin }}">
+                {{ $indikatorItem->jam }}
+            </option>
+        @endforeach
+    </select>
+    @error('jam')
+        <span class="text-danger">{{ $message }}</span>
+    @enderror
+</div>
+
+<!-- Poin -->
+<div class="col">
+    <label for="poin">Poin</label>
+    <input type="text" name="poin" id="poin" class="form-control" required readonly>
+    @error('poin')
+        <span class="text-danger">{{ $message }}</span>
+    @enderror
+</div>
+
+
 
                                 <div class="row">
                                     <div class="col">
@@ -94,4 +120,18 @@
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('jam').addEventListener('change', function() {
+            var jamValue = this.value;  // Ambil nilai jam yang dipilih
+            var poinField = document.getElementById('poin');
+
+            // Cari poin yang sesuai dengan jam yang dipilih
+            var selectedOption = this.options[this.selectedIndex];
+            var poin = selectedOption.getAttribute('data-poin');  // Ambil poin dari data-poin attribute
+
+            // Set poin otomatis di input
+            poinField.value = poin;
+        });
+    </script>
+
 @endsection

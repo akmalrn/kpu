@@ -25,11 +25,12 @@ class PrestasiController extends Controller
     {
         $siswa = Siswa::all();
         $kategori = KategoriIndikator::all();
+        $indikator = Indikator::all();
         $SiswaTotal = Siswa::count();
         $KategoriTotal = KategoriIndikator::count();
         $IndikatorTotal = Indikator::count();
         $PrestasiTotal = Prestasi::count();
-        return view('backend.prestasi.create', compact('siswa', 'kategori', 'SiswaTotal', 'KategoriTotal', 'IndikatorTotal', 'PrestasiTotal'));
+        return view('backend.prestasi.create', compact('siswa','indikator', 'kategori', 'SiswaTotal', 'KategoriTotal', 'IndikatorTotal', 'PrestasiTotal'));
     }
 
     public function store(Request $request)
@@ -38,12 +39,29 @@ class PrestasiController extends Controller
             'id_siswa' => 'required',
             'id_kategori_indikator' => 'required',
             'tanggal' => 'required|date',
+            'jam' => 'required|numeric',
+            'poin' => 'required|string|max:255',
             'periode' => 'required|string'
         ]);
 
-        Prestasi::create($request->all());
-        return redirect()->route('prestasi.index')->with('success', 'Data prestasi berhasil ditambahkan.');
+        // Cek apakah sudah ada data yang sama (berdasarkan id_siswa, kategori, dan periode)
+        $existing = Prestasi::where('id_siswa', $request->id_siswa)
+            ->where('id_kategori_indikator', $request->id_kategori_indikator)
+            ->where('periode', $request->periode)
+            ->first();
+
+        if ($existing) {
+
+            $existing->poin += $request->poin;
+            $existing->save();
+        } else {
+            // Kalo belum ada, bikin data baru
+            Prestasi::create($request->all());
+        }
+
+        return redirect()->route('prestasi.index')->with('success', 'Data prestasi berhasil disimpan/diupdate.');
     }
+
 
     public function edit($id)
     {
@@ -63,7 +81,16 @@ class PrestasiController extends Controller
             'id_siswa' => 'required',
             'id_kategori_indikator' => 'required',
             'tanggal' => 'required|date',
+            'jam' => 'required|numeric',
             'periode' => 'required|string'
+        ]);
+        Prestasi::create([
+            'id_siswa' => $request->id_siswa,
+            'id_kategori_indikator' => $request->id_kategori_indikator,
+            'jam' => $request->jam,
+            'poin' => $request->poin,
+            'tanggal' => $request->tanggal,
+            'periode' => $request->periode,
         ]);
 
         $prestasi = Prestasi::findOrFail($id);

@@ -17,4 +17,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('/dashboardAdmin/kategori', App\Http\Controllers\Backend\KategoriIndikatorController::class);
     Route::resource('/dashboardAdmin/indikator', App\Http\Controllers\Backend\IndikatorController::class);
     Route::resource('/dashboardAdmin/prestasi', App\Http\Controllers\Backend\PrestasiController::class);
+    Route::get('/get-poin/{id}', [App\Http\Controllers\Backend\IndikatorController::class, 'getPoin']);
+    Route::get('/get-indikator/{id_kategori}', [App\Http\Controllers\Backend\IndikatorController::class, 'getIndikatorByKategori']);
+
 });
+
+

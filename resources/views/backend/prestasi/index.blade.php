@@ -47,6 +47,7 @@
                                             <th>Kategori Indikator</th>
                                             <th>Tanggal</th>
                                             <th>Periode</th>
+                                            <th>Poin</th>
                                             <th style="width: 10%">Aksi</th>
                                         </tr>
                                     </thead>
@@ -58,6 +59,7 @@
                                                 <td>{{ $prestasi->kategoriIndikator->nama }}</td>
                                                 <td>{{ $prestasi->tanggal }}</td>
                                                 <td>{{ $prestasi->periode }}</td>
+                                                <td>{{ $prestasi->poin }}</td>
                                                 <td>
                                                     <div class="form-button-action">
                                                         <a href="{{ route('prestasi.edit', $prestasi->id) }}" class="btn btn-link btn-primary" data-bs-toggle="tooltip" title="Edit Prestasi">
