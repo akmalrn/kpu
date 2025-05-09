@@ -4,5 +4,5 @@
     <li style="margin: 8px 0;">🧑‍💼 Muhamad Akmal R</li>
     <li style="margin: 8px 0;">🧑‍💼 Muhammad Reyhan Amri</li>
     <li style="margin: 8px 0;">🧑‍💼 Rizky Zaenal Mutaqin</li>
-    <li style="margin: 8px 0;">👩‍💼 Ranandia Ceska Faturochman</li>
+    <li style="margin: 8px 0;">🧑‍💼 Ranandia Ceska Faturochman</li>
 </ul>
