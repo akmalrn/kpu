@@ -22,7 +22,6 @@ Route::post('/login-siswa', [App\Http\Controllers\Frontend\AuthController::class
 
 Route::middleware('auth:siswa')->group(function () {
     Route::get('/dashboard-siswa', [App\Http\Controllers\Frontend\SiswaDashboardController::class, 'index'])->name('siswa.dashboard');
-    Route::get('/dashboardAdmin', [App\Http\Controllers\Backend\AdminController::class, 'index'])->name('dashboard.admin');
     Route::resource('/dashboardAdmin/siswa', App\Http\Controllers\Backend\SiswaController::class);
 
 });
