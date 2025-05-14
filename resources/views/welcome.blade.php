@@ -32,7 +32,7 @@
             @endif
             <!-- ALERT ERROR SELESAI -->
 
-            <form action="{{ route('loginAdmin') }}" method="POST">
+            <form action="{{ route('login.admin') }}" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
