@@ -23,7 +23,7 @@ class IndikatorController extends Controller
 
     public function create()
     {
-        $kategori_indikators = KategoriIndikator::all(); 
+        $kategori_indikators = KategoriIndikator::all();
         $SiswaTotal = Siswa::count();
         $KategoriTotal = KategoriIndikator::count();
         $IndikatorTotal = Indikator::count();

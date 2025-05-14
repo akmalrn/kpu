@@ -13,6 +13,8 @@ class Prestasi extends Model
         'id_kategori_indikator',
         'tanggal',
         'periode',
+        'poin',
+        'jam',
     ];
 
    public function siswa()

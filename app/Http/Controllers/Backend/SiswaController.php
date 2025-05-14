@@ -19,6 +19,7 @@ class SiswaController extends Controller
         $KategoriTotal = KategoriIndikator::count();
         $IndikatorTotal = Indikator::count();
         $PrestasiTotal = Prestasi::count();
+        $siswa = Siswa::with('prestasi')->get();
         return view('backend.siswa.index', compact('siswa', 'SiswaTotal', 'KategoriTotal', 'IndikatorTotal', 'PrestasiTotal'));
     }
 

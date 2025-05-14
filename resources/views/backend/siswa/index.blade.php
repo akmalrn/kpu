@@ -35,7 +35,8 @@
                                         <th>ID</th>
                                         <th>Nama</th>
                                         <th>Kelas</th>
-                                        <th>Tipe</th>   
+                                        <th>Tipe</th>
+                                        <th>Total Poin</th> <!-- Kolom untuk total poin -->
                                         <th style="width: 10%">Aksi</th>
                                     </tr>
                                 </thead>
@@ -46,6 +47,13 @@
                                         <td>{{ $s->nama }}</td>
                                         <td>{{ $s->kelas }}</td>
                                         <td>{{ $s->tipe }}</td>
+                                        <td>
+                                            @php
+                                                // Hitung total poin siswa berdasarkan data prestasi
+                                                $totalPoin = $s->prestasi->sum('poin');
+                                            @endphp
+                                            {{ $totalPoin }} <!-- Tampilkan total poin -->
+                                        </td>
                                         <td>
                                             <div class="form-button-action d-flex">
                                                 <form action="{{ route('siswa.edit', $s->id) }}" method="GET" style="margin-right: 5px;">
