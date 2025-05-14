@@ -16,8 +16,10 @@ class Siswa extends Model
         'password',
     ];
 
-    public function prestasi()
-    {
-        return $this->hasMany(Prestasi::class);
-    }
+// Model Siswa
+public function prestasi()
+{
+    return $this->hasMany(Prestasi::class, 'id_siswa');
+}
+
 }
