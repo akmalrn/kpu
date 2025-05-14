@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('prestasi', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_siswa')->constrained('siswa')->onDelete('cascade');
-            $table->foreignId('id_kategori_indikator')->constrained('kategori_indikator')->onDelete('cascade');
+            $table->string('jam');
+            $table->string('poin');
             $table->date('tanggal');
-            $table->string('periode');
             $table->timestamps();
         });
     }

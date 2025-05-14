@@ -45,7 +45,7 @@
             <div class="sidebar-logo">
                 <!-- Logo Header -->
                 <div class="logo-header" data-background-color="dark">
-                    <a href="index.html" class="logo">
+                    <a href="{{ route('dashboard.admin') }}" class="logo">
                         <img src="{{ asset('assets/images/wikrama.png') }}" alt="navbar brand" class="navbar-brand"
                             height="40" /> 
                             <p class="p-3 fs-5 mt-3 text-white">Wikrama 1 Garut</p>
@@ -138,7 +138,7 @@
                 <div class="main-header-logo">
                     <!-- Logo Header -->
                     <div class="logo-header" data-background-color="dark">
-                        <a href="index.html" class="logo">
+                        <a href="{{ route('dashboard.admin') }}" class="logo">
                             <img src="backend/img/kaiadmin/logo_light.svg" alt="navbar brand" class="navbar-brand"
                                 height="20" />
                         </a>

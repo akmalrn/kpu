@@ -12,7 +12,6 @@ class Indikator extends Model
         'kategori_indikator_id',
         'poin',
         'jam',
-        'grade',
     ];
 
     public $timestamps = false;
@@ -20,5 +19,5 @@ class Indikator extends Model
     public function kategoriIndikator()
     {
         return $this->belongsTo(KategoriIndikator::class);
-    }   
+    }
 }

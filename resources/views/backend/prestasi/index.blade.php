@@ -32,7 +32,6 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Siswa</th>
-                                        <th>Kategori</th>
                                         <th>Jam</th>
                                         <th>Poin</th>
                                         <th>Tanggal Input</th>
@@ -44,7 +43,6 @@
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $p->siswa->nama ?? '-' }}</td>
-                                        <td>{{ $p->kategoriIndikator->nama ?? '-' }}</td>
                                         <td>{{ $p->jam }}</td>
                                         <td>{{ $p->poin }}</td>
                                         <td>{{ $p->created_at->format('d-m-Y') }}</td>

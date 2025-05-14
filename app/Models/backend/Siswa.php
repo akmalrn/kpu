@@ -2,11 +2,17 @@
 
 namespace App\Models\Backend;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Siswa extends Model
+class Siswa extends Authenticatable
 {
+
+    use Notifiable;
+    
     protected $table = 'siswa';
+
+    protected $guard = 'siswa';
 
     protected $fillable = [
         'id',

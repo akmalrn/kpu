@@ -37,7 +37,6 @@ class IndikatorController extends Controller
             'kategori_indikator_id' => 'required|exists:kategori_indikator,id',
             'poin' => 'required|string|max:255',
             'jam' => 'required|string|max:255',
-            'grade' => 'required|string|max:255',
         ]);
 
         Indikator::create($validated);
@@ -62,7 +61,6 @@ class IndikatorController extends Controller
             'kategori_indikator_id' => 'required|exists:kategori_indikator,id',
             'poin' => 'required|string|max:255',
             'jam' => 'required|string|max:255',
-            'grade' => 'required|string|max:255',
         ]);
 
         $indikator->update($validated);

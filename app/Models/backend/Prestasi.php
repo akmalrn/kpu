@@ -10,9 +10,7 @@ class Prestasi extends Model
 
     protected $fillable = [
         'id_siswa',
-        'id_kategori_indikator',
         'tanggal',
-        'periode',
         'poin',
         'jam',
     ];

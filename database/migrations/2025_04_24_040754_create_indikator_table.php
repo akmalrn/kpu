@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('kategori_indikator_id')->constrained('kategori_indikator')->onDelete('cascade');
             $table->string('poin');
             $table->string('jam');
-            $table->string('grade');
             $table->timestamps();
         });
     }
