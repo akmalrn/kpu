@@ -54,6 +54,7 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
+                                        <td>No</td>
                                         <th>Nama</th>
                                         <th>NIS</th>
                                         <th>Kelas</th>
@@ -63,6 +64,7 @@
                                 <tbody>
                                     @foreach($siswa as $s)
                                         <tr>
+                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $s->nama ?? '-' }}</td>
                                             <td>{{ $s->id ?? '-' }}</td>
                                             <td>{{ $s->kelas ?? '-' }}</td>
@@ -81,4 +83,3 @@
     </div>
 </div>
 @endsection
-    

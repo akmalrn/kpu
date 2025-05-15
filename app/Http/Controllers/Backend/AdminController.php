@@ -13,7 +13,13 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $siswa = Siswa::all();
+        $siswa = Siswa::with('prestasi')
+            ->get()
+            ->map(function ($item) {
+                $item->total_poin = $item->prestasi->sum('poin');
+                return $item;
+            })
+            ->sortByDesc('total_poin');
         $SiswaTotal = $siswa->count();
         $KategoriTotal = KategoriIndikator::count();
         $IndikatorTotal = Indikator::count();

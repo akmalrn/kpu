@@ -7,7 +7,9 @@ use App\Models\Backend\Indikator;
 use App\Models\Backend\KategoriIndikator;
 use App\Models\Backend\Prestasi;
 use App\Models\Backend\Siswa;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PrestasiController extends Controller
 {
@@ -89,5 +91,21 @@ class PrestasiController extends Controller
     {
         Prestasi::destroy($id);
         return redirect()->route('prestasi.index')->with('success', 'Data prestasi berhasil dihapus.');
+    }
+    public function getJamByKategori(Request $request)
+    {
+        $kategoriId = $request->input('id_kategori');
+        $indikators = Indikator::where('kategori_indikator_id', $kategoriId)->get(['jam', 'poin']);
+
+        return response()->json(['jam' => $indikators]);
+    }
+
+    public function downloadPdf($id_siswa)
+    {
+        $prestasis = Prestasi::where('id_siswa', $id_siswa)->get();
+        $siswa = Siswa::findOrFail($id_siswa);
+        $pdf = pdf::loadView('backend.prestasi.pdf', compact('prestasis', 'siswa'));
+
+        return $pdf->download("prestasi_{$siswa->nama}.pdf");
     }
 }

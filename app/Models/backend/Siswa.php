@@ -9,10 +9,8 @@ class Siswa extends Authenticatable
 {
 
     use Notifiable;
-    
-    protected $table = 'siswa';
 
-    protected $guard = 'siswa';
+    protected $table = 'siswa';
 
     protected $fillable = [
         'id',
@@ -22,10 +20,13 @@ class Siswa extends Authenticatable
         'password',
     ];
 
-// Model Siswa
 public function prestasi()
 {
     return $this->hasMany(Prestasi::class, 'id_siswa');
+}
+public function kategoriIndikator()
+{
+    return $this->belongsTo(KategoriIndikator::class, 'id_kategori_indikator');
 }
 
 }

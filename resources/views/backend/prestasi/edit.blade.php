@@ -60,7 +60,7 @@
                                         @error('id_kategori_indikator')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
-                                    </div>                                   
+                                    </div>
                                 </div>
 
                                 <div class="row">
@@ -71,18 +71,6 @@
                                                 value="{{ old('tanggal', $prestasi->tanggal) }}"
                                                 class="form-control" required>
                                             @error('tanggal')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group form-group-default">
-                                            <label for="periode">Periode</label>
-                                            <input type="text" name="periode" id="periode"
-                                                class="form-control @error('periode') is-invalid @enderror"
-                                                value="{{ old('periode', $prestasi->periode) }}"
-                                                placeholder="Masukkan periode prestasi" required>
-                                            @error('periode')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>

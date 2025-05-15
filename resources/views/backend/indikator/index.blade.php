@@ -46,7 +46,6 @@
                                             <th>ID</th>
                                             <th>Poin</th>
                                             <th>Jam</th>
-                                            <th>Grade</th>
                                             <th>Kategori</th>
                                             <th style="width: 10%">Aksi</th>
                                         </tr>
@@ -56,7 +55,6 @@
                                             <th>ID</th>
                                             <th>Poin</th>
                                             <th>Jam</th>
-                                            <th>Grade</th>
                                             <th>Kategori</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -67,7 +65,6 @@
                                                 <td>{{ $indikator->id }}</td>
                                                 <td>{{ $indikator->poin }}</td>
                                                 <td>{{ $indikator->jam }}</td>
-                                                <td>{{ $indikator->grade }}</td>
                                                 <td>{{ $indikator->kategoriIndikator->nama }}</td> <!-- Mengambil kategori indikator -->
                                                 <td>
                                                     <div class="form-button-action">

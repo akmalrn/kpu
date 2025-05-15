@@ -47,8 +47,8 @@
                 <div class="logo-header" data-background-color="dark">
                     <a href="{{ route('dashboard.admin') }}" class="logo">
                         <img src="{{ asset('assets/images/wikrama.png') }}" alt="navbar brand" class="navbar-brand"
-                            height="40" /> 
-                            <p class="p-3 fs-5 mt-3 text-white">Wikrama 1 Garut</p>
+                            height="40" />
+                        <p class="p-3 fs-5 mt-3 text-white">Wikrama 1 Garut</p>
                     </a>
                     <div class="nav-toggle">
                         <button class="btn btn-toggle toggle-sidebar">
@@ -161,14 +161,18 @@
                     <div class="container-fluid">
                         <nav
                             class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <button type="submit" class="btn btn-search pe-1">
-                                        <i class="fa fa-search search-icon"></i>
-                                    </button>
+                            <form action="{{ route('siswa.index') }}" method="GET" class="d-flex">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <button type="submit" class="btn btn-search pe-1">
+                                            <i class="fa fa-search search-icon"></i>
+                                        </button>
+                                    </div>
+                                    <input type="text" name="search" class="form-control"
+                                        placeholder="Cari siswa..." value="{{ request('search') }}">
                                 </div>
-                                <input type="text" placeholder="Search ..." class="form-control" />
-                            </div>
+                            </form>
+
                         </nav>
 
                         <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
@@ -243,7 +247,7 @@
                                             });
                                         });
                                     </script>
-    
+
 
                                 </ul>
                             </li>

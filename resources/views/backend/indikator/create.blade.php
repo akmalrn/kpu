@@ -55,21 +55,6 @@
                                 <div class="row mt-3">
                                     <div class="col">
                                         <div class="form-group form-group-default">
-                                            <label for="grade">Grade</label>
-                                            <select name="grade" id="grade" class="form-control @error('grade') is-invalid @enderror" required>
-                                                <option value="">Pilih Grade</option>
-                                                @foreach (['A', 'B', 'C', 'D', 'E'] as $option)
-                                                    <option value="{{ $option }}" {{ old('grade', $indikator->grade ?? '') == $option ? 'selected' : '' }}>{{ $option }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('grade')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>                                    
-
-                                    <div class="col">
-                                        <div class="form-group form-group-default">
                                             <label for="kategori_indikator_id">Kategori Indikator</label>
                                             <select name="kategori_indikator_id" id="kategori_indikator_id"
                                                 class="form-control @error('kategori_indikator_id') is-invalid @enderror" required>

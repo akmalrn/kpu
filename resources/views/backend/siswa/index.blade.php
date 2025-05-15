@@ -1,6 +1,5 @@
 @extends('backend.layouts.app')
 @section('title', 'Data Siswa')
-
 @section('content')
 <div class="container">
     <div class="page-inner">
@@ -32,17 +31,19 @@
                             <table id="add-row" class="display table table-striped table-hover">
                                 <thead>
                                     <tr>
+                                        <th>No</th>
                                         <th>ID</th>
                                         <th>Nama</th>
                                         <th>Kelas</th>
                                         <th>Tipe</th>
-                                        <th>Total Poin</th> <!-- Kolom untuk total poin -->
+                                        <th>Total Poin</th>
                                         <th style="width: 10%">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($siswa as $s)
                                     <tr>
+                                       <td>{{ $loop->iteration }}</td>
                                         <td>{{ $s->id }}</td>
                                         <td>{{ $s->nama }}</td>
                                         <td>{{ $s->kelas }}</td>
@@ -52,7 +53,7 @@
                                                 // Hitung total poin siswa berdasarkan data prestasi
                                                 $totalPoin = $s->prestasi->sum('poin');
                                             @endphp
-                                            {{ $totalPoin }} <!-- Tampilkan total poin -->
+                                            {{ $totalPoin }}
                                         </td>
                                         <td>
                                             <div class="form-button-action d-flex">
@@ -75,9 +76,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div> <!-- end table-responsive -->
-                    </div> <!-- end card-body -->
-                </div> <!-- end card -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

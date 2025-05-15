@@ -21,7 +21,7 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->intended('dashboardAdmin');
+            return redirect()->route('dashboard.admin');
         }
 
         return redirect()->back()->withErrors([
@@ -31,7 +31,7 @@ class AuthController extends Controller
 
     public function logout()
     {
-        Auth::logout(); 
-        return redirect()->route('halamanLoginAdmin');  
+        Auth::logout();
+        return redirect()->route('halamanLoginAdmin');
     }
 }

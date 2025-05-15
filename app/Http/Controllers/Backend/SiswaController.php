@@ -12,16 +12,34 @@ use Illuminate\Support\Facades\Hash;
 
 class SiswaController extends Controller
 {
-    public function index()
-    {
-        $siswa = Siswa::all();
-        $SiswaTotal = Siswa::count();
-        $KategoriTotal = KategoriIndikator::count();
-        $IndikatorTotal = Indikator::count();
-        $PrestasiTotal = Prestasi::count();
-        $siswa = Siswa::with('prestasi')->get();
-        return view('backend.siswa.index', compact('siswa', 'SiswaTotal', 'KategoriTotal', 'IndikatorTotal', 'PrestasiTotal'));
+    public function index(Request $request)
+{
+    $query = Siswa::with('prestasi');
+
+    if ($request->filled('search')) {
+        $search = $request->search;
+        $query->where('nama', 'like', '%' . $search . '%');
     }
+
+    $siswa = $query->get()->map(function ($item) {
+        $item->total_poin = $item->prestasi->sum('poin');
+        return $item;
+    })->sortByDesc('total_poin');
+
+    $SiswaTotal = Siswa::count();
+    $KategoriTotal = KategoriIndikator::count();
+    $IndikatorTotal = Indikator::count();
+    $PrestasiTotal = Prestasi::count();
+
+    return view('backend.siswa.index', compact(
+        'siswa',
+        'SiswaTotal',
+        'KategoriTotal',
+        'IndikatorTotal',
+        'PrestasiTotal'
+    ));
+}
+
 
     public function create()
     {

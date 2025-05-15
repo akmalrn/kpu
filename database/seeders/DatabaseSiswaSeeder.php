@@ -15,7 +15,7 @@ class DatabaseSiswaSeeder extends Seeder
     public function run(): void
     {
         Siswa::Create([
-            'nis' => '12200765',
+            'id' => '12200765',
             'nama' => 'Siswa 1',
             'kelas' => 'XII PPLG',
             'tipe' => 'reguler',
@@ -23,7 +23,7 @@ class DatabaseSiswaSeeder extends Seeder
         ]);
 
         Siswa::Create([
-            'nis' => '12200766',
+            'id' => '12200766',
             'nama' => 'Siswa 1',
             'kelas' => 'XII PPLG',
             'tipe' => 'reguler',
@@ -31,7 +31,7 @@ class DatabaseSiswaSeeder extends Seeder
         ]);
 
         Siswa::Create([
-            'nis' => '12200767',
+            'id' => '12200767',
             'nama' => 'Siswa 1',
             'kelas' => 'XII PPLG',
             'tipe' => 'reguler',
