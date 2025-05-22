@@ -30,10 +30,13 @@
 <body>
 
     <h2>Daftar Prestasi Siswa: {{ $siswa->nama }}</h2>
-    <p>NISN: {{ $siswa->id }}</p>
+    <p>NIS: {{ $siswa->id }}</p>
     <p>Kelas: {{ $siswa->kelas }}</p>
-    <p>Tipe: {{ $siswa->tipe }}</p>
-
+        <p>
+        <strong>Total Poin:
+            {{ $prestasis->sum('poin') }}
+        </strong>
+    </p>
     <table>
         <thead>
             <tr>

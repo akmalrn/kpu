@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('kelas');
-            $table->enum('tipe', ['reguler', 'unggulan']);
+            $table->string('tipe');
             $table->string('password')->nullable();
             $table->timestamps();
         });

@@ -16,14 +16,62 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <h4 class="card-title mb-0">List Inputan Prestasi</h4>
-                            <div>
-                                <a href="{{ route('prestasi.create') }}" class="btn btn-primary btn-round">
-                                    <i class="fa fa-plus me-1"></i> Tambah Prestasi
-                                </a>
-                            </div>
-                        </div>
+
+<div class="card-header d-flex justify-content-between align-items-center">
+    <h4 class="card-title mb-0">List Inputan Prestasi</h4>
+    <div>
+        <form method="GET" action="{{ route('prestasi.index') }}" class="d-inline me-2">
+            <select name="tipe" onchange="this.form.submit()" class="form-select d-inline w-auto">
+                <option value="">Semua Tipe</option>
+                <option value="unggulan" {{ (request('tipe') == 'unggulan') ? 'selected' : '' }}>Unggulan</option>
+                <option value="reguler" {{ (request('tipe') == 'reguler') ? 'selected' : '' }}>Reguler</option>
+            </select>
+        </form>
+                  <div class="btn-group me-2">
+            <button type="button" class="btn btn-success btn-round dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-download me-1"></i> Download PDF
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <a class="dropdown-item" href="{{ route('prestasi.pdf.all', ['tipe' => 'unggulan']) }}" target="_blank">
+                        PDF Unggulan
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="{{ route('prestasi.pdf.all', ['tipe' => 'reguler']) }}" target="_blank">
+                        PDF Reguler
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="{{ route('prestasi.pdf.all') }}" target="_blank">
+                        PDF Semua
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <a href="{{ route('prestasi.create') }}" class="btn btn-primary btn-round">
+            <i class="fa fa-plus me-1"></i> Tambah Prestasi
+        </a>
+        @if(request('tipe') == 'unggulan')
+        <form action="{{ route('prestasi.reset.unggulan') }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus SEMUA data prestasi siswa UNGGULAN?');">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-warning btn-round ms-2">
+                <i class="fa fa-trash me-1"></i> Reset Data Unggulan
+            </button>
+        </form>
+        @elseif(request('tipe') == 'reguler')
+        <form action="{{ route('prestasi.reset.reguler') }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus SEMUA data prestasi siswa REGULER?');">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-secondary btn-round ms-2">
+                <i class="fa fa-trash me-1"></i> Reset Data Reguler
+            </button>
+        </form>
+        @endif
+    </div>
+</div>
+
                         <div class="card-body">
                             <div class="accordion" id="accordionPrestasi">
                                 @foreach ($prestasis->groupBy('id_siswa') as $siswaId => $prestasiGroup)

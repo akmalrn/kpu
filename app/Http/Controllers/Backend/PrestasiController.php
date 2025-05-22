@@ -13,15 +13,25 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class PrestasiController extends Controller
 {
-    public function index()
-    {
-        $prestasis = Prestasi::with(['siswa', 'kategoriIndikator'])->get();
-        $SiswaTotal = Siswa::count();
-        $KategoriTotal = KategoriIndikator::count();
-        $IndikatorTotal = Indikator::count();
-        $PrestasiTotal = Prestasi::count();
-        return view('backend.prestasi.index', compact('prestasis', 'SiswaTotal', 'KategoriTotal', 'IndikatorTotal', 'PrestasiTotal'));
+
+public function index(Request $request)
+{
+    $tipe = $request->query('tipe');
+    $prestasis = Prestasi::with(['siswa', 'kategoriIndikator']);
+
+    if ($tipe) {
+        $prestasis = $prestasis->whereHas('siswa', function($q) use ($tipe) {
+            $q->where('tipe', $tipe);
+        });
     }
+
+    $prestasis = $prestasis->get();
+    $SiswaTotal = Siswa::count();
+    $KategoriTotal = KategoriIndikator::count();
+    $IndikatorTotal = Indikator::count();
+    $PrestasiTotal = Prestasi::count();
+    return view('backend.prestasi.index', compact('prestasis', 'SiswaTotal', 'KategoriTotal', 'IndikatorTotal', 'PrestasiTotal', 'tipe'));
+}
 
     public function create()
     {
@@ -108,4 +118,33 @@ class PrestasiController extends Controller
 
         return $pdf->download("prestasi_{$siswa->nama}.pdf");
     }
+public function resetUnggulan()
+{
+    $siswaUnggulan = \App\Models\Backend\Siswa::where('tipe', 'unggulan')->pluck('id');
+    Prestasi::whereIn('id_siswa', $siswaUnggulan)->delete();
+    return redirect()->route('prestasi.index')->with('success', 'Semua data prestasi siswa unggulan berhasil dihapus.');
+}
+
+public function resetReguler()
+{
+    $siswaReguler = \App\Models\Backend\Siswa::where('tipe', 'reguler')->pluck('id');
+    Prestasi::whereIn('id_siswa', $siswaReguler)->delete();
+    return redirect()->route('prestasi.index')->with('success', 'Semua data prestasi siswa reguler berhasil dihapus.');
+}
+public function downloadPdfAll(Request $request)
+{
+    $tipe = $request->query('tipe');
+    $prestasis = Prestasi::with('siswa');
+
+    if ($tipe) {
+        $prestasis = $prestasis->whereHas('siswa', function($q) use ($tipe) {
+            $q->where('tipe', $tipe);
+        });
+    }
+
+    $prestasis = $prestasis->get();
+    $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('backend.prestasi.pdf_all', compact('prestasis', 'tipe'));
+    $filename = 'prestasi_' . ($tipe ?: 'semua') . '.pdf';
+    return $pdf->download($filename);
+}
 }

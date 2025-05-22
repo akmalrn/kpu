@@ -30,27 +30,27 @@
                                 <div class="col-md-6">
                                     <label for="id_siswa" class="form-label">Nama Siswa</label>
                                     <select name="id_siswa" id="id_siswa" class="form-control @error('id_siswa') is-invalid @enderror" required>
-                                        <option value="">-- Pilih Siswa --</option>
-                                        @foreach ($siswa as $s)
-                                            <option value="{{ $s->id }}" {{ old('id_siswa') == $s->id ? 'selected' : '' }}>
-                                                {{ $s->nama }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                       <option value="">-- Pilih Siswa --</option>
+                                          @foreach ($siswa as $s)
+                                              <option value="{{ $s->id }}" data-tipe="{{ $s->tipe }}" {{ old('id_siswa') == $s->id ? 'selected' : '' }}>
+                                              {{ $s->nama }}
+                                              </option>
+                                          @endforeach
+                                     </select>
                                     @error('id_siswa')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-md-6">
                                     <label for="id_kategori_indikator" class="form-label">Kategori Prestasi</label>
-                                    <select name="id_kategori_indikator" id="id_kategori_indikator" class="form-control @error('id_kategori_indikator') is-invalid @enderror" required>
+                                     <select name="id_kategori_indikator" id="id_kategori_indikator" class="form-control @error('id_kategori_indikator') is-invalid @enderror" required>
                                         <option value="">-- Pilih Kategori --</option>
-                                        @foreach ($kategori as $k)
-                                            <option value="{{ $k->id }}" {{ old('id_kategori_indikator') == $k->id ? 'selected' : '' }}>
+                                             @foreach ($kategori as $k)
+                                                <option value="{{ $k->id }}" data-nama="{{ $k->nama }}" {{ old('id_kategori_indikator') == $k->id ? 'selected' : '' }}>
                                                 {{ $k->nama }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                        </option>
+                                  @endforeach
+                                     </select>
                                     @error('id_kategori_indikator')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -85,13 +85,6 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-md-6">
-                                    <label for="periode" class="form-label">Periode</label>
-                                    <input type="text" name="periode" id="periode" class="form-control @error('periode') is-invalid @enderror" placeholder="Masukkan periode prestasi" value="{{ old('periode') }}" required>
-                                    @error('periode')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
                             </div>
 
                             <div class="d-flex justify-content-end">
@@ -111,6 +104,24 @@
 
 <script>
 $(document).ready(function() {
+
+      $('#id_siswa').on('change', function() {
+        let tipe = $('#id_siswa option:selected').data('tipe');
+        let kategoriSelect = $('#id_kategori_indikator');
+        let kategoriId = '';
+
+        if (tipe === 'Unggulan') {
+            kategoriId = kategoriSelect.find('option[data-nama="Qiyamullail"]').val();
+        } else if (tipe === 'reguler') {
+            kategoriId = kategoriSelect.find('option[data-nama="GDS"]').val();
+        }
+
+        if (kategoriId) {
+            kategoriSelect.val(kategoriId).trigger('change');
+        } else {
+            kategoriSelect.val('');
+        }
+    });
 
     $('#id_kategori_indikator').on('change', function() {
         let kategoriId = $(this).val();
@@ -142,13 +153,13 @@ $(document).ready(function() {
         }
     });
 
-    // Pas jam dipilih, update poin otomatis
+
     $('#jam').on('change', function() {
         let poin = $(this).find(':selected').data('poin') || '';
         $('#poin').val(poin);
     });
 
-    // Kalo mau, bisa tambah validasi atau fitur lain disini bro
+
 
 });
 </script>

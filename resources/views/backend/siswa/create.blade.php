@@ -51,14 +51,14 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">
+                                     <div class="col">
                                         <div class="form-group form-group-default">
                                             <label for="tipe">Tipe</label>
                                             <select name="tipe" id="tipe"
                                                 class="form-control @error('tipe') is-invalid @enderror" required>
                                                 <option value="">-- Pilih Tipe --</option>
-                                                <option value="reguler">Reguler</option>
-                                                <option value="unggulan">Unggulan</option>
+                                                <option value="Unggulan">Unggulan</option>
+                                                <option value="Reguler">Reguler</option>
                                             </select>
                                             @error('tipe')
                                                 <span class="text-danger">{{ $message }}</span>

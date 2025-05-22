@@ -53,25 +53,26 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col">
+                                                                    <div class="col">
                                         <div class="form-group form-group-default">
                                             <label for="tipe">Tipe</label>
                                             <select name="tipe" id="tipe"
-                                                class="form-control @error('tipe') is-invalid @enderror" required>
+                                                class="form-control @error('kelas') is-invalid @enderror" required>
                                                 <option value="">-- Pilih Tipe --</option>
-                                                <option value="reguler"
-                                                    {{ old('tipe', $siswa->tipe) == 'reguler' ? 'selected' : '' }}>Reguler
-                                                </option>
-                                                <option value="unggulan"
-                                                    {{ old('tipe', $siswa->tipe) == 'unggulan' ? 'selected' : '' }}>Unggulan
-                                                </option>
+                                                <option value="Unggulan"
+                                                    {{ old('tipe', $siswa->kelas) == 'Unggulan' ? 'selected' : '' }}>Unggulan
+                                                    </option>
+                                                     <option value="Reguler"
+                                                    {{ old('tipe', $siswa->kelas) == 'Reguler' ? 'selected' : '' }}>Reguler
+                                                     </option>
                                             </select>
-                                            @error('tipe')
+                                            @error('kelas')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </div>
+
+                                <div class="row">
                                     <div class="col">
                                         <div class="form-group form-group-default">
                                             <label for="kelas">Kelas</label>

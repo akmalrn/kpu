@@ -41,7 +41,6 @@
         @endforeach
     </div>
 
-    <!-- Tabel Daftar Siswa -->
     <div class="row mt-4">
         <div class="col-md-12">
             <div class="card card-round">
@@ -68,7 +67,13 @@
                                             <td>{{ $s->nama ?? '-' }}</td>
                                             <td>{{ $s->id ?? '-' }}</td>
                                             <td>{{ $s->kelas ?? '-' }}</td>
-                                            <td>{{ $s->tipe ?? '-'}}</td>
+                                            <td>
+                                            @if ($s->tipe == 'Unggulan')
+                                                <span class="badge badge-success">Unggulan</span>
+                                            @else
+                                                <span class="badge badge-secondary">Reguler</span>
+                                            @endif
+                                        <td>
                                         </tr>
                                     @endforeach
                                 </tbody>

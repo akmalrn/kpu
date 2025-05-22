@@ -47,10 +47,14 @@
                                         <td>{{ $s->id }}</td>
                                         <td>{{ $s->nama }}</td>
                                         <td>{{ $s->kelas }}</td>
-                                        <td>{{ $s->tipe }}</td>
+                                        <td>
+                                            @if ($s->tipe == 'Unggulan')
+                                                <span class="badge badge-success">Unggulan</span>
+                                            @else
+                                                <span class="badge badge-secondary">Reguler</span>
+                                            @endif
                                         <td>
                                             @php
-                                                // Hitung total poin siswa berdasarkan data prestasi
                                                 $totalPoin = $s->prestasi->sum('poin');
                                             @endphp
                                             {{ $totalPoin }}

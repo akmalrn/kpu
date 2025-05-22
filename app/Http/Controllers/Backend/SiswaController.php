@@ -56,7 +56,7 @@ class SiswaController extends Controller
             'id' => 'required|integer|unique:siswa,id',
             'nama' => 'required|string|max:255',
             'kelas' => 'required|string|max:255',
-            'tipe' => 'required|in:reguler,unggulan',
+            'tipe' => 'required|string|max:255',
             'password' => 'required|string|min:6',
         ]);
 
@@ -87,7 +87,6 @@ class SiswaController extends Controller
             'id' => 'required|integer|unique:siswa,id,' . $id,
             'nama' => 'required|string|max:255',
             'kelas' => 'required|string|max:255',
-            'tipe' => 'required|in:reguler,unggulan',
             'password' => 'nullable|string|min:6',
         ]);
 

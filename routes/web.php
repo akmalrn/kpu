@@ -26,3 +26,7 @@ Route::middleware('auth:siswa')->group(function () {
 });
 
 Route::get('/get-jam-by-kategori', [App\Http\Controllers\Backend\PrestasiController::class, 'getJamByKategori']);
+Route::delete('/prestasi/reset/unggulan', [App\Http\Controllers\Backend\PrestasiController::class, 'resetUnggulan'])->name('prestasi.reset.unggulan');
+Route::delete('/prestasi/reset/reguler', [App\Http\Controllers\Backend\PrestasiController::class, 'resetReguler'])->name('prestasi.reset.reguler');
+Route::get('/prestasi/pdf', [App\Http\Controllers\Backend\PrestasiController::class, 'downloadPdfAll'])->name('prestasi.pdf.all');
+
